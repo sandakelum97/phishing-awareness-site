@@ -80,8 +80,8 @@ const quizController = {
         const bodyEl = document.body;
         const pageType = bodyEl.getAttribute('data-quiz-type') || (window.location.pathname.includes('results.html') ? 'results' : 'hub');
         this.quizType = pageType;
-        if (pageType === 'hub') this.runParticles(particleConfig.hub);
-        else if (pageType === 'results') this.showResults();
+        if (pageType === 'hub') { this.runParticles(particleConfig.hub); }
+        else if (pageType === 'results') { this.showResults(); }
         else {
             this.quizData = allQuizData[this.quizType];
             if (this.quizData) this.showTraining();
@@ -162,31 +162,18 @@ const quizController = {
     },
     showResults() {
         const quizType = localStorage.getItem('lastQuizType');
-        const score = parseInt(localStorage.getItem('lastQuizScore'), 10);
-        const total = parseInt(localStorage.getItem('lastQuizTotal'), 10);
-        if (!quizType || isNaN(score) || isNaN(total)) { window.location.href = 'index.html'; return; }
+        const score = localStorage.getItem('lastQuizScore');
+        const total = localStorage.getItem('lastQuizTotal');
+        if (!quizType || score === null) { window.location.href = 'index.html'; return; }
         const quizTitle = allQuizData[quizType].title;
         document.getElementById('resultsTitle').innerText = `${quizTitle} Results`;
         document.getElementById('finalScore').innerText = `${score} / ${total}`;
         document.getElementById('retakeQuizBtn').href = `${quizType}_quiz.html`;
-        
-        let scoreMessage, bodyClass, particleConf;
-        if (score >= 9) {
-            scoreMessage = "Excellent work! You're a security expert! 🏆";
-            bodyClass = 'results-pass';
-            particleConf = particleConfig.secure;
-        } else if (score >= 5) {
-            scoreMessage = "Good job! You have a solid understanding of the key concepts. 👍";
-            bodyClass = 'results-ok';
-            particleConf = particleConfig.warning;
-        } else {
-            scoreMessage = "There's room for improvement. A great opportunity to learn! 💪";
-            bodyClass = 'results-fail';
-            particleConf = particleConfig.danger;
-        }
+        let scoreMessage = "There's room for improvement. Keep learning!";
+        if ((score / total) >= 0.9) scoreMessage = "Excellent work! You're a security expert! 🏆";
+        else if ((score / total) >= 0.7) scoreMessage = "Great job! You have a strong security awareness. 👍";
         document.getElementById('scoreMessage').innerText = scoreMessage;
-        document.body.className = bodyClass;
-        this.runParticles(particleConf);
+        this.runParticles(particleConfig.warning);
     },
     updateSecurityVisuals() {
         if (!document.getElementById('securityStatusBar')) return;
