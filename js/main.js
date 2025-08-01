@@ -160,20 +160,42 @@ const quizController = {
         localStorage.setItem('lastQuizTotal', this.quizData.questions.length);
         window.location.href = 'results.html';
     },
-    showResults() {
-        const quizType = localStorage.getItem('lastQuizType');
-        const score = localStorage.getItem('lastQuizScore');
-        const total = localStorage.getItem('lastQuizTotal');
-        if (!quizType || score === null) { window.location.href = 'index.html'; return; }
-        const quizTitle = allQuizData[quizType].title;
-        document.getElementById('resultsTitle').innerText = `${quizTitle} Results`;
-        document.getElementById('finalScore').innerText = `${score} / ${total}`;
-        document.getElementById('retakeQuizBtn').href = `${quizType}_quiz.html`;
-        let scoreMessage = "There's room for improvement. Keep learning!";
-        if ((score / total) >= 0.9) scoreMessage = "Excellent work! You're a security expert! 🏆";
-        else if ((score / total) >= 0.7) scoreMessage = "Great job! You have a strong security awareness. 👍";
-        document.getElementById('scoreMessage').innerText = scoreMessage;
-        this.runParticles(particleConfig.warning);
+    // Find this function in your js/main.js and replace it completely.
+showResults() {
+    const quizType = localStorage.getItem('lastQuizType');
+    const score = parseInt(localStorage.getItem('lastQuizScore'), 10);
+    const total = parseInt(localStorage.getItem('lastQuizTotal'), 10);
+
+    if (!quizType || isNaN(score) || isNaN(total)) {
+        window.location.href = 'index.html';
+        return;
+    }
+
+    const quizTitle = allQuizData[quizType].title;
+    document.getElementById('resultsTitle').innerText = `${quizTitle} Results`;
+    document.getElementById('finalScore').innerText = `${score} / ${total}`;
+    document.getElementById('retakeQuizBtn').href = `${quizType}_quiz.html`;
+
+    let scoreMessage, bodyClass, particleConf;
+
+    if (score >= 9) {
+        scoreMessage = "Excellent work! You're a security expert! 🏆";
+        bodyClass = 'results-pass';
+        particleConf = particleConfig.secure;
+    } else if (score >= 5) {
+        scoreMessage = "Good job! You have a solid understanding of the key concepts. 👍";
+        bodyClass = 'results-ok';
+        particleConf = particleConfig.warning;
+    } else {
+        scoreMessage = "There's room for improvement. A great opportunity to learn! 💪";
+        bodyClass = 'results-fail';
+        particleConf = particleConfig.danger;
+    }
+
+    document.getElementById('scoreMessage').innerText = scoreMessage;
+    document.body.className = bodyClass;
+    this.runParticles(particleConf);
+},
     },
     updateSecurityVisuals() {
         if (!document.getElementById('securityStatusBar')) return;
