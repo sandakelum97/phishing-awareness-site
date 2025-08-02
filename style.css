@@ -20,12 +20,13 @@ header h1 { color: var(--text-color); font-size: 1.8em; }
 footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); font-size: 0.9em; color: #8b949e; }
 .btn { display: inline-block; padding: 12px 25px; border-radius: var(--border-radius); font-size: 1em; font-weight: bold; cursor: pointer; text-decoration: none; transition: all 0.3s; border: 1px solid var(--chesmi-red); color: var(--chesmi-red); background: transparent; }
 .btn:hover { background-color: var(--chesmi-red); color: var(--bg-color); box-shadow: 0 0 15px var(--chesmi-red); }
+.btn i { margin-right: 8px; }
 
 /* --- Login Form Styles --- */
 .login-form { max-width: 500px; margin: 20px auto; }
 .form-group { margin-bottom: 20px; text-align: left; }
 .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
-.form-group input { width: 100%; padding: 10px; background: var(--secondary-color); border: 1px solid var(--border-color); border-radius: var(--border-radius); color: var(--text-color); font-size: 1em; }
+.form-group input { box-sizing: border-box; width: 100%; padding: 10px; background: var(--secondary-color); border: 1px solid var(--border-color); border-radius: var(--border-radius); color: var(--text-color); font-size: 1em; }
 .login-form button { width: 100%; }
 
 /* --- HUB PAGE THEME --- */
@@ -43,11 +44,6 @@ footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1p
 .quiz-page-header { text-align: center; position: relative; }
 .back-to-hub { color: #8b949e; text-decoration: none; position: absolute; top: 10px; left: 10px; font-size: 0.9em; }
 .back-to-hub:hover { color: var(--chesmi-red); }
-.security-level-container, .progress-container { width: 100%; margin: 20px 0; }
-.status-text { font-weight: bold; margin-bottom: 8px; display: block; letter-spacing: 2px; transition: color 0.5s ease; }
-.status-bar-wrapper { height: 15px; background-color: var(--border-color); border-radius: 20px; overflow: hidden; }
-.status-bar { height: 100%; width: 100%; border-radius: 20px; transition: width 0.5s ease, background-color 0.5s ease; }
-.progress-bar { height: 10px; width: 0%; background-color: var(--chesmi-yellow); border-radius: 30px; transition: width 0.4s ease-in-out; }
 .question-area { padding: 20px; background-color: var(--secondary-color); border-radius: var(--border-radius); margin-bottom: 20px; min-height: 100px; }
 .mcq-option { display: block; width: 100%; text-align: left; background: transparent; border: 1px solid var(--border-color); color: var(--text-color); padding: 15px; margin-bottom: 10px; border-radius: var(--border-radius); cursor: pointer; transition: background-color 0.3s, border-color 0.3s; font-size: 1em; }
 .mcq-option:hover { background-color: var(--border-color); border-color: var(--chesmi-yellow); }
@@ -69,20 +65,24 @@ body.state-danger .container, .results-fail .container { border-color: var(--dan
 .modal { position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; }
 .modal.show { display: flex; }
 .modal-content { background-color: var(--secondary-color); padding: 30px; border: 1px solid var(--border-color); width: 90%; max-width: 600px; border-radius: var(--border-radius); text-align: left; }
-.modal-content h2 { color: var(--chesmi-yellow); margin-top: 0; }
-.modal-content #startQuizBtn { margin-top: 20px; float: right; border-color: var(--chesmi-yellow); color: var(--chesmi-yellow); }
-.modal-content #startQuizBtn:hover { background-color: var(--chesmi-yellow); color: var(--bg-color); }
+.modal-content #startQuizBtn { float: right; }
 
-/* --- CERTIFICATE STYLES --- */
-.certificate-page { background-color: #fff; display: flex; justify-content: center; align-items: flex-start; padding: 20px; }
-.certificate-container { width: 1000px; height: 700px; border: 10px solid #161b22; background: #f4f4f4; padding: 20px; box-sizing: border-box; }
-.certificate-border { border: 2px solid var(--chesmi-red); width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 30px; box-sizing: border-box; color: #333; }
-.certificate-header, .certificate-footer { text-align: center; }
-.certificate-logo { max-height: 80px; }
-.certificate-header h1 { font-family: 'Tinos', serif; font-size: 3em; color: var(--chesmi-red); margin: 10px 0; }
+/* --- LOG SECTION --- */
+.log-section { display: none; margin-top: 20px; text-align: center; }
+.log-section textarea { width: 100%; height: 60px; background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color); font-family: 'Roboto Mono', monospace; padding: 10px; box-sizing: border-box; margin: 10px 0; }
+#downloadLogBtn { border-color: var(--chesmi-yellow); color: var(--chesmi-yellow); }
+#downloadLogBtn:hover { background-color: var(--chesmi-yellow); color: var(--bg-color); }
+
+/* --- CERTIFICATE STYLES (A4) --- */
+.certificate-page { background-color: #555; display: flex; justify-content: center; align-items: flex-start; padding: 20px; }
+.certificate-wrapper { text-align: center; }
+.certificate-container { width: 210mm; min-height: 296mm; /* A4 size */ margin: 0 auto; background: #f4f4f4; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; }
+.certificate-border { border: 2px solid var(--chesmi-red); width: 100%; height: 100%; flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 30px; box-sizing: border-box; color: #333; }
+.certificate-logo { max-height: 60px; }
+.certificate-header h1 { font-family: 'Tinos', serif; font-size: 2.5em; color: var(--chesmi-red); margin: 10px 0; }
 .certificate-body { text-align: center; }
-.certificate-body h2 { font-family: 'Tinos', serif; font-size: 2.5em; }
-.user-name { font-family: 'Tinos', serif; font-size: 3em; font-weight: bold; color: var(--chesmi-red); border-bottom: 2px solid #333; padding-bottom: 10px; margin: 20px 0; }
-.quiz-name { font-size: 1.8em; font-weight: bold; }
-.print-button-container { position: fixed; bottom: 20px; right: 20px; }
-@media print { .print-button-container { display: none; } .certificate-page { padding: 0; margin: 0; } }
+.certificate-body h2 { font-family: 'Tinos', serif; font-size: 2.2em; }
+.user-name { font-family: 'Tinos', serif; font-size: 2.8em; font-weight: bold; color: var(--chesmi-red); border-bottom: 2px solid #333; padding-bottom: 10px; margin: 20px 0; }
+.quiz-name { font-size: 1.6em; font-weight: bold; }
+.print-button-container { margin-top: 20px; display: flex; justify-content: center; gap: 20px; }
+@media print { body, .certificate-page { margin: 0; padding: 0; background-color: #fff; } .print-button-container { display: none; } .certificate-wrapper { margin: 0; padding: 0; } }
