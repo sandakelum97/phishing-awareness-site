@@ -10,13 +10,28 @@
 </head>
 <body class="hub-page">
     <div id="particles-js"></div>
-    <div class="container">
-        <header>
+
+    <div id="passwordModal" class="modal show">
+        <div class="modal-content">
+            <h2>Administrator Access</h2>
+            <p>Please enter the password to view the logs.</p>
+            <form id="passwordForm" class="login-form" style="max-width: 300px; margin: 20px auto;">
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" required>
+                    <p id="passwordError" class="error-text" style="display: none;">Incorrect password. Please try again.</p>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container" style="visibility: hidden;"> <header>
             <img src="img/logo.png" alt="Chesmi Consolidated (Pvt) Ltd Logo" class="company-logo">
             <h1>Administrator Training Log</h1>
             <a href="hub.html" class="back-to-hub" style="position: static; margin-top: 10px;"><i class="fas fa-arrow-left"></i> Back to Hub</a>
         </header>
-        <main id="adminContent" style="display: none;">
+        <main id="adminContent">
             <div class="log-controls">
                 <button id="downloadAllLogsBtn" class="btn"><i class="fas fa-download"></i> Download Full Log (CSV)</button>
                 <button id="clearLogsBtn" class="btn btn-danger"><i class="fas fa-trash"></i> Clear All Logs</button>
@@ -35,8 +50,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Log entries will be inserted here -->
-                    </tbody>
+                        </tbody>
                 </table>
             </div>
         </main>
