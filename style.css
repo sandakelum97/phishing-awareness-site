@@ -92,3 +92,9 @@ body.state-danger .container, .results-fail .container { border-color: var(--dan
 .quiz-name { font-size: 1.6em; font-weight: bold; }
 .print-button-container { margin-top: 20px; display: flex; justify-content: center; gap: 20px; }
 @media print { body, .certificate-page { margin: 0; padding: 0; background-color: #fff; } .print-button-container { display: none; } .certificate-wrapper { margin: 0; padding: 0; box-shadow: none; } .certificate-container { box-shadow: none; border: 10px solid #161b22; } }
+/* --- Additions for Admin Password Modal --- */
+.error-text {
+    color: var(--danger-color);
+    font-size: 0.9em;
+    margin-top: 5px;
+}
