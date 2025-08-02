@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Log - Chesmi Consolidated (Pvt) Ltd</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body class="hub-page">
+    <div id="particles-js"></div>
+    <div class="container">
+        <header>
+            <img src="img/logo.png" alt="Chesmi Consolidated (Pvt) Ltd Logo" class="company-logo">
+            <h1>Administrator Training Log</h1>
+            <a href="hub.html" class="back-to-hub" style="position: static; margin-top: 10px;"><i class="fas fa-arrow-left"></i> Back to Hub</a>
+        </header>
+        <main id="adminContent" style="display: none;">
+            <div class="log-controls">
+                <button id="downloadAllLogsBtn" class="btn"><i class="fas fa-download"></i> Download Full Log (CSV)</button>
+                <button id="clearLogsBtn" class="btn btn-danger"><i class="fas fa-trash"></i> Clear All Logs</button>
+            </div>
+            <div class="log-table-container">
+                <table id="logTable">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Quiz</th>
+                            <th>Score</th>
+                            <th>Attempt</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Log entries will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2025 Security Awareness Program by IT Department, Chesmi Consolidated (Pvt) Ltd</p>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
